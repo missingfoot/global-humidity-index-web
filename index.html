@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+    <title>Global Humidity Index Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <button class="theme-switch" onclick="toggleTheme()">
+        <span class="theme-switch-icon">🌙</span>
+        <span class="theme-switch-text">Dark Mode</span>
+    </button>
+
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="container">
+        <h1>Global Humidity Index</h1>
+        
+        <div id="time-options">
+            <div class="time-option active" data-value="now">Current Time</div>
+            <div class="time-option" data-value="today_noon">Today at Noon</div>
+            <div class="time-option" data-value="yesterday_noon">Yesterday at Noon</div>
+        </div>
+        
+        <div class="comparison-container">
+            <div class="city-card">
+                <h3>Your location</h3>
+                <select id="city1" class="city-select" title="Select your location">
+                    <option value="">Select a city...</option>
+                </select>
+                <div id="result1" class="result"></div>
+                <div id="loading1" class="loading">Loading weather data...</div>
+            </div>
+            
+            <div class="city-card">
+                <h3>Compare to</h3>
+                <select id="city2" class="city-select" title="Select city to compare">
+                    <option value="">Select a city...</option>
+                </select>
+                <div id="result2" class="result"></div>
+                <div id="loading2" class="loading">Loading weather data...</div>
+            </div>
+        </div>
+
+        <div id="charts-container" class="charts-container" style="display: none;">
+            <h2>Comparison Charts</h2>
+            <div class="chart-wrapper">
+                <div class="chart-title">Global Humidity Index (GHI)</div>
+                <canvas id="ghiChart"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <div class="chart-title">Temperature (°C)</div>
+                <canvas id="tempChart"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <div class="chart-title">Dew Point (°C)</div>
+                <canvas id="dewChart"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <div class="chart-title">Relative Humidity (%)</div>
+                <canvas id="humidityChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    
+    <!-- Our JavaScript -->
+    <script src="js/ghi-calculator.js"></script>
+    <script src="js/weather-service.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
