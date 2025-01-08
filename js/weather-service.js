@@ -121,7 +121,14 @@ class WeatherService {
             { id: 5, name: 'Dubai', country: 'AE', display_name: 'Dubai, AE', popular: true },
             { id: 6, name: 'Hong Kong', country: 'HK', display_name: 'Hong Kong, HK', popular: true },
             { id: 7, name: 'Mumbai', country: 'IN', display_name: 'Mumbai, IN', popular: true },
-            { id: 8, name: 'Sydney', country: 'AU', display_name: 'Sydney, AU', popular: true }
+            { id: 8, name: 'Sydney', country: 'AU', display_name: 'Sydney, AU', popular: true },
+            { id: 9, name: 'Istanbul', country: 'TR', display_name: 'Istanbul, TR', popular: true },
+            { id: 10, name: 'Konya', country: 'TR', display_name: 'Konya, TR', popular: true },
+            { id: 11, name: 'Paris', country: 'FR', display_name: 'Paris, FR', popular: true },
+            { id: 12, name: 'Le Havre', country: 'FR', display_name: 'Le Havre, FR', popular: true },
+            { id: 13, name: 'Riyadh', country: 'SA', display_name: 'Riyadh, SA', popular: true },
+            { id: 14, name: 'Munich', country: 'DE', display_name: 'Munich, DE', popular: true },
+            { id: 15, name: 'Kuching', country: 'MY', display_name: 'Kuching, MY', popular: true }
         ];
 
         return popularCities;

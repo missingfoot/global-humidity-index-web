@@ -1,49 +1,105 @@
 <!DOCTYPE html>
-<html data-theme="light">
+<html lang="en" data-theme="light">
 <head>
     <title>Global Humidity Index Calculator</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/@mui/material@latest/dist/material.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@mui/material@latest/dist/material.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <button class="theme-switch" onclick="toggleTheme()">
+    <button class="theme-switch" onclick="toggleTheme()" aria-label="Toggle theme">
         <span class="theme-switch-icon">🌙</span>
         <span class="theme-switch-text">Dark Mode</span>
     </button>
 
-    <div id="loading" class="loading-overlay">
-        <div class="loading-spinner"></div>
-    </div>
-
     <div class="container">
         <h1>Global Humidity Index</h1>
-        
-        <div id="time-options">
-            <div class="time-option active" data-value="now">Current Time</div>
-            <div class="time-option" data-value="today_noon">Today at Noon</div>
-            <div class="time-option" data-value="yesterday_noon">Yesterday at Noon</div>
+
+        <div class="city-inputs">
+            <div class="select-container">
+                <label class="select-label">Your location</label>
+                <div class="mui-select">
+                    <select id="city1" class="mui-select__input" title="Select your location" aria-label="Select your location">
+                        <option value="">Select a city...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="select-container">
+                <label class="select-label">Compare to</label>
+                <div class="mui-select">
+                    <select id="city2" class="mui-select__input" title="Select city to compare" aria-label="Select city to compare">
+                        <option value="">Select a city...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="time-options" class="time-controls" role="group" aria-label="Time selection">
+            <button class="time-option active" data-value="now" aria-pressed="true">Current Time</button>
+            <button class="time-option" data-value="today_noon" aria-pressed="false">Today at Noon</button>
+            <button class="time-option" data-value="yesterday_noon" aria-pressed="false">Yesterday at Noon</button>
         </div>
         
         <div class="comparison-container">
-            <div class="city-card">
-                <h3>Your location</h3>
-                <select id="city1" class="city-select" title="Select your location">
-                    <option value="">Select a city...</option>
-                </select>
-                <div id="result1" class="result"></div>
-                <div id="loading1" class="loading">Loading weather data...</div>
-            </div>
-            
-            <div class="city-card">
-                <h3>Compare to</h3>
-                <select id="city2" class="city-select" title="Select city to compare">
-                    <option value="">Select a city...</option>
-                </select>
-                <div id="result2" class="result"></div>
-                <div id="loading2" class="loading">Loading weather data...</div>
+            <div class="comparison-card" style="display: none;" id="results-card">
+                <div class="comparison-header">
+                    <div class="city-info">
+                        <div class="city-name" id="city1-name"></div>
+                        <div id="loading1" class="loading" aria-hidden="true">Loading...</div>
+                        <div class="ghi-number" id="city1-ghi"></div>
+                    </div>
+                    <div class="city-info city-info-right">
+                        <div class="city-name" id="city2-name"></div>
+                        <div id="loading2" class="loading" aria-hidden="true">Loading...</div>
+                        <div class="ghi-number" id="city2-ghi"></div>
+                    </div>
+                </div>
+                
+                <div class="comparison-bar"></div>
+                
+                <div class="comparison-details">
+                    <div class="comparison-row">
+                        <div class="city-value" id="city1-comfort"></div>
+                        <div class="metric-label">Humidity level</div>
+                        <div class="city-value text-right" id="city2-comfort"></div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="city-value" id="city1-temp"></div>
+                        <div class="metric-label">Temperature</div>
+                        <div class="city-value text-right" id="city2-temp"></div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="city-value" id="city1-dewpoint"></div>
+                        <div class="metric-label">Dew point</div>
+                        <div class="city-value text-right" id="city2-dewpoint"></div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="city-value" id="city1-humidity"></div>
+                        <div class="metric-label">Relative humidity</div>
+                        <div class="city-value text-right" id="city2-humidity"></div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="city-value" id="city1-time"></div>
+                        <div class="metric-label">Local time</div>
+                        <div class="city-value text-right" id="city2-time"></div>
+                    </div>
+
+                    
+                    
+
+                </div>
             </div>
         </div>
 
